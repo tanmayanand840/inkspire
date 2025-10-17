@@ -1,48 +1,70 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
-import { useRef } from 'react';
 
 const Header = () => {
+  const { setInput, input } = useAppContext()
+  const inputRef = useRef()
 
- const {setInput,input}=useAppContext();
- const inputRef=useRef();
+  const onSubmitHandler = (e) => {
+    e.preventDefault()
+    setInput(inputRef.current.value)
+  }
 
- const onSubmitHandler=async(e)=>{
-  e.preventDefault();
-  setInput(inputRef.current.value);
- }
-
- const onClear=()=>{
-  setInput('');
-  inputRef.current.value='';
- }
-
+  const onClear = () => {
+    setInput('')
+    inputRef.current.value = ''
+  }
 
   return (
-    <div className='mx-8 sm:mx-16 xl:mx-24 relative'>
-        <div className='text-center mt-20 mb-8'>
+    <header className="relative text-center py-20 px-6 sm:px-16 xl:px-24 overflow-hidden">
+      <img
+        src={assets.gradientBackground}
+        alt=""
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10 opacity-40"
+      />
 
+      <div className="inline-flex items-center justify-center gap-3 px-5 py-2 mb-5 border border-[#FF6F3C]/30 bg-[#FF6F3C]/10 rounded-full text-[#FF6F3C] text-sm shadow-sm">
+        <p>✨ NEW: AI Feature Integrated</p>
+      </div>
 
-            <div className='inline-flex items-center justify-center gap-4 px-6 py-1.5 mb-4 border border-primary/40 bg-primary/10 rounded-full text-primary text-sm '>
-                <p>NEW:AI feature integrated</p>
-                <img src={assets.star_icon} alt=""  className='w-2.5'/>
-            </div>
-            <h1 className='text-3xl sm:text-6xl font-semibold sm:leading-16 text-gray-700'>Your own <span className='text-primary'>blogging</span> <br />platform.</h1>
-            <p className='my-6 sm:my-8 max-w-2xl m-auto max-sm:text-xs'> This is your space to think out loud ,to share what matters ,and to write without filters.Whether it's one word or a thousand ,your story starts right Here</p>
-            <form onSubmit={onSubmitHandler} className='flex justify-between max-w-lg max-sm:scale-75 mx-auto border border-gray-300 bg-white rounded overflow-hidden' >
-                <input ref={inputRef} className='w-full pl-4 outline-none' type="text" placeholder='search for blogs'required />
-                <button className='bg-primary text-white px-8 py-2 m-1.5 rounded hover:scale-105 transition-all cursor-pointer' type='submit'>search</button>
-            </form>
+      <h1 className="text-4xl sm:text-6xl font-extrabold text-[#1D3557] leading-tight">
+        Your own <span className="text-[#FF6F3C]">blogging</span> platform.
+      </h1>
+      <p className="mt-6 mb-10 max-w-2xl mx-auto text-[#475569] text-sm sm:text-base">
+        This is your space to think out loud — to share what matters and write
+        without filters. Whether it's one word or a thousand, your story starts
+        right here.
+      </p>
 
-        </div>
-        <div className='text-center'>{
-          input &&  <button onClick={onClear} className='border font-light text-xs py-1 px-3 rounded-sm shadow-custom-sm cursor-pointer'>clear Search</button> }
-         
-        </div>
-        <img src={assets.gradientBackground} alt="" className='absolute -top-50 -z-1 opacity-50' />
-      
-    </div>
+      <form
+        onSubmit={onSubmitHandler}
+        className="flex justify-between max-w-lg mx-auto bg-white shadow-md border border-gray-200 rounded-full overflow-hidden"
+      >
+        <input
+          ref={inputRef}
+          className="w-full pl-5 py-3 text-gray-700 outline-none rounded-l-full"
+          type="text"
+          placeholder="Search for blogs..."
+          required
+        />
+        <button
+          className="bg-[#1D3557] text-white px-8 py-3 rounded-r-full hover:bg-[#2A4373] transition-all"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+
+      {input && (
+        <button
+          onClick={onClear}
+          className="mt-4 text-xs font-light border border-gray-300 text-gray-600 px-4 py-1.5 rounded-md shadow-sm hover:bg-gray-100 transition-all"
+        >
+          Clear Search
+        </button>
+      )}
+    </header>
   )
 }
 
