@@ -2,15 +2,30 @@ import React from 'react'
 
 const Newsletter = () => {
   return (
-    <div className='flex flex-col items-center justify-center text-center space-y-2 my-32'>
-        <h1 className='md:text-4xl text-2xl font-semibold'>Never miss a Blog!</h1>
-        <p className='md:text-lg text-gray-500/70 pb-8'>Subscribe to get the latest blog, new tech, and exclusive news </p>
-        <form  className='flex items-center justify-between max-w-2xl w-full md:h-13 h-12'>
-          <input className='border border-gray-300 rounded-md h-full border-r-0 outline-none w-full rounded-r-none px-3 text-gray-500' type="text" placeholder='Enter your email' required />
-          <button className='md:px-12 px-8 h-full text-white bg-primary/80 hover:bg-primary transition-all cursor-pointer rounded-md' type="submit">Subscribe</button>
-        </form>
-      
-    </div>
+    <section className="text-center py-20 bg-[#FFF9F3] rounded-xl mx-8 sm:mx-16 xl:mx-40 shadow-md border border-[#1D3557]/10">
+      <h1 className="text-3xl md:text-4xl font-semibold mb-3 text-[#1D3557]">
+        Never Miss a Blog!
+      </h1>
+      <p className="text-[#475569] mb-8 max-w-xl mx-auto text-sm sm:text-base">
+        Subscribe to get the latest blogs, creative ideas, and tech insights
+        right in your inbox.
+      </p>
+
+      <form className="flex items-center justify-center max-w-xl mx-auto bg-white shadow-md rounded-full overflow-hidden border border-gray-200">
+        <input
+          className="flex-1 px-5 py-3 outline-none text-[#1D3557] text-sm"
+          type="email"
+          placeholder="Enter your email"
+          required
+        />
+        <button
+          className="bg-[#FF6F3C] text-white px-8 py-3 hover:bg-[#FF8759] transition-all rounded-r-full"
+          type="submit"
+        >
+          Subscribe
+        </button>
+      </form>
+    </section>
   )
 }
 
